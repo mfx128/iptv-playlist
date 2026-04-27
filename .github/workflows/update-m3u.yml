@@ -2,8 +2,8 @@ name: Auto-Update IPTV Playlist
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every night at midnight
-  workflow_dispatch: # Allows manual run for testing
+    - cron: '0 0 * * *' # Runs every night at midnight UTC
+  workflow_dispatch: # Allows you to trigger it manually from the Actions tab
 
 permissions:
   contents: write
@@ -32,6 +32,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add my_list.iptvcat.com.m3u8
-          git commit -m "Automated scraper update, EPG mapping, and cleanup" || exit 0
+          # Add the new .m3u file
+          git add my_list.iptvcat.com.m3u
+          # Remove the old .m3u8 file if it exists
+          git rm my_list.iptvcat.com.m3u8 --ignore-unmatch
+          git commit -m "Automated update: Scraped fresh links, cleaned URLs, and renamed to .m3u" || exit 0
           git push
