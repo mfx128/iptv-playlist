@@ -2,33 +2,33 @@
 #EXTINF:0 tvg-country="AL;AD" tvg-logo="https://images-1.rakuten.tv/storage/global-live-channel/translation/artwork/1ccbd6b3-d27d-4f22-a4ae-3eabb4c9e062-width200-quality90.png" group-title="Sport",DAZN Women's Football (1080p)
 https://dazn-daznwomensfootball-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-dazn-daznwomensfootball-rakuten/CDN/master.m3u8
 #EXTINF:0 tvg-country="AL;AM;BG;DK;FI;FR;GE;DE;GR;HU;IT;NO;PT;RS;ES;SE;CH;TR;UA" tvg-logo="https://i.imgur.com/m7IC01U.png" group-title="Sport",Extreme Sports
-https://edge02.odtv.az/o4/extremesport/playlist.m3u8
+https://edge02.odtv.az/o4/extremesport/playlist.m3u
 #EXTINF:0 tvg-country="AL" tvg-logo="" group-title="Sport",RTSH Sport (1080p)
-http://178.33.11.6:8696/live/rtshsport/playlist.m3u8
+http://178.33.11.6:8696/live/rtshsport/playlist.m3u
 #EXTINF:0 tvg-country="AL;AD;BG" tvg-logo="https://images-1.rakuten.tv/storage/global-live-channel/translation/artwork/77aa6871-a13f-470b-a2d5-ca5650f63323-width200-quality90.jpeg" group-title="Sport",World of Freesports (1080p)
 https://rakutenaa-mainstreammediafreesportsintl-rakuten-t7dc0.amagi.tv/playlist/rakutenAA-mainstreammediafreesportsintl-rakuten/playlist.m3u8
 #EXTINF:0 tvg-country="DZ;AO;EG;MA" tvg-logo="https://i.imgur.com/YWIJdai.png" group-title="Sport",Africa 24 English (1080p),Africa 24 Sport (1080p)
-https://edge17.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u8
+https://edge17.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u
 #EXTINF:0 tvg-country="DZ;FR" tvg-logo="" group-title="Sport",Africa 24 Sport (1080p)
-https://africa24.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u8
+https://africa24.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u
 #EXTINF:0 tvg-country="AD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Esport3.svg/330px-Esport3.svg.png" group-title="Sport",Esport3 (1080p) [Geo-blocked]
-https://directes-tv-cat.3catdirectes.cat/live-origin/esport3-hls/master.m3u8
+https://directes-tv-cat.3catdirectes.cat/live-origin/esport3-hls/master.m3u
 #EXTINF:0 tvg-country="AD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Esport3.svg/330px-Esport3.svg.png" group-title="Sport",Esport3 (1080p) [Geo-blocked]
-https://directes-tv-cat.3catdirectes.cat/live-content/esport3-hls/master.m3u8
+https://directes-tv-cat.3catdirectes.cat/live-content/esport3-hls/master.m3u
 #EXTINF:0 tvg-country="AR" tvg-logo="" group-title="Sport",CnAr Deportes (1440p)
-https://stmv1.cnarlatam.com/cnardeportes2/cnardeportes2/playlist.m3u8
+https://stmv1.cnarlatam.com/cnardeportes2/cnardeportes2/playlist.m3u
 #EXTINF:0 tvg-country="AR;BO;CL;CO;PA;PE" tvg-logo="https://i.imgur.com/N56B7si.png" group-title="Sport",SEO TV 5 Deportes (1080p) [Not 24/7]
-https://seo.tv.bo/tv/SEOtv_5sd.m3u8
+https://seo.tv.bo/tv/SEOtv_5sd.m3u
 #EXTINF:0 tvg-country="AR" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/512px-TyC_Sports_logo.svg.png" group-title="Sport",TyC Sports (1080p) [Geo-blocked]
-https://live-04-11-tyc24.vodgc.net/tyc24/index_tyc24_1080.m3u8
+https://live-04-11-tyc24.vodgc.net/tyc24/index_tyc24_1080.m3u
 #EXTINF:0 tvg-country="AM" tvg-logo="https://i.imgur.com/VmaYUcq.png" group-title="Sport",Fast Sports (1080p)
-http://stream01.vnet.am/Channel_131/index.m3u8
+http://stream01.vnet.am/Channel_131/index.m3u
 #EXTINF:0 tvg-country="AM" tvg-logo="" group-title="Sport",Viju Sport (480p)
-http://ott-cdn.ucom.am/s38/index.m3u8
+http://ott-cdn.ucom.am/s38/index.m3u
 #EXTINF:0 tvg-country="AU" tvg-logo="" group-title="Sport",BeIN SPORTS XTRA (1080p) [Geo-blocked]
-https://amg01334-beinsportsllc-beinxtra-samsungau-eiyvc.amagi.tv/playlist/amg01334-beinsportsllc-beinxtra-samsungau/playlist.m3u8
+https://amg01334-beinsportsllc-beinxtra-samsungau-eiyvc.amagi.tv/playlist/amg01334-beinsportsllc-beinxtra-samsungau/playlist.m3u
 #EXTINF:0 tvg-country="AU" tvg-logo="" group-title="Sport",Leaderboard Sports News (1080p)
-https://amg02703-amg02703c20-samsung-au-9093.playouts.now.amagi.tv/playlist.m3u8
+https://amg02703-amg02703c20-samsung-au-9093.playouts.now.amagi.tv/playlist.m3u
 #EXTINF:0 tvg-country="AT" tvg-logo="" group-title="Sport",Action Sports
 http://cfd-v4-service-channel-stitcher-use1-1.prd.pluto.tv/stitch/hls/channel/5be1be871843b56328bc3ef1/master.m3u8?appName=web&appVersion=unknown&clientTime=0&deviceDNT=0&deviceId=1b1c5241-4b81-11ef-a8ac-e146e4e7be02&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=unknown&includeExtendedEvents=false&serverSideAds=false&sid=5f4b1024-61ca-4918-b727-2ee2d9fe6398&checkedby:iptvcat.com
 #EXTINF:0 tvg-country="AT" tvg-logo="" group-title="Sport",Action Sports
