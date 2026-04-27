@@ -1,12 +1,11 @@
 import requests
+from bs4 import BeautifulSoup
 import re
 import os
 
-# The file in your repository
 OUTPUT_FILE = "my_list.iptvcat.com.m3u8"
 
-# A sample mapping of your channels to iptv-org's tvg-ids
-# You can expand this dictionary by looking up IDs at: https://github.com/iptv-org/epg
+# Requirement: EPG Mapping for IPTV Smarters
 EPG_MAP = {
     "Fox News Channel": "FoxNewsChannel.us",
     "CNN USA": "CNN.us",
@@ -16,60 +15,72 @@ EPG_MAP = {
     "Bloomberg TV": "BloombergTelevision.us",
     "CBS News 24/7": "CBSNews.us",
     "ABC News Live": "ABCNewsLive.us",
-    "Showtime East": "ShowtimeEast.us",
-    "HBO 2 East": "HBO2East.us",
-    "AMC East": "AMCEast.us",
-    "Discovery Channel": "DiscoveryChannelEast.us",
-    "History": "HistoryEast.us",
-    "National Geographic East": "NationalGeographicEast.us",
-    "Comedy Central East": "ComedyCentralEast.us",
     "Al Jazeera English": "AlJazeeraEnglish.qa",
-    "France 24": "France24English.fr",
     "Sky News": "SkyNews.uk"
 }
 
-def clean_and_map_m3u(content):
-    # Requirement 3: Clean up the URL tracking parameters
+def scrape_additional_links():
+    """Scrapes iptvcat.com for any fresh public links."""
+    print("Scraping for fresh links...")
+    url = "https://iptvcat.com/home_22"
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    try:
+        response = requests.get(url, headers=headers, timeout=15)
+        # Find potential stream URLs in the page source
+        links = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', response.text)
+        return [link for link in links if ".m3u8" in link or ".ts" in link]
+    except Exception as e:
+        print(f"Scrape failed: {e}")
+        return []
+
+def process_and_clean(content):
+    """Cleans tracking tags, adds EPG IDs, and strips whitespace."""
+    # Requirement: Remove the tracking parameter
     content = content.replace("?checkedby:iptvcat.com", "")
-
-    # Requirement 2: Add tvg-id for EPG mapping
+    
     lines = content.split('\n')
-    for i, line in enumerate(lines):
+    new_lines = []
+    
+    for line in lines:
         if line.startswith("#EXTINF"):
-            # Extract the raw channel name (everything after the last comma)
             channel_name = line.split(",")[-1].strip()
-            
-            # Strip resolution tags like " (1080p)" or " (720p)" to match the dictionary
+            # Clean name for mapping (remove 1080p etc)
             base_name = re.sub(r'\s*\(\d+p\)', '', channel_name).strip()
-
+            
             if base_name in EPG_MAP:
                 tvg_id = EPG_MAP[base_name]
-                # Inject the tvg-id if it's not already there
                 if 'tvg-id=' not in line:
-                    lines[i] = re.sub(r'(#EXTINF:-?\d+)\s+', fr'\1 tvg-id="{tvg_id}" ', line)
-                    
-    return '\n'.join(lines)
+                    line = re.sub(r'(#EXTINF:-?\d+)\s+', fr'\1 tvg-id="{tvg_id}" ', line)
+        
+        if line.strip(): # Remove blank lines
+            new_lines.append(line)
+            
+    return '\n'.join(new_lines).strip()
 
 def main():
-    # If you have a direct URL to pull the raw text from daily, uncomment this:
-    # SOURCE_URL = "https://example.com/raw_playlist"
-    # response = requests.get(SOURCE_URL)
-    # content = response.text
+    # 1. Start with existing file content
+    if os.path.exists(OUTPUT_FILE):
+        with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
+            content = f.read()
+    else:
+        content = "#EXTM3U"
+
+    # 2. Scrape new links
+    new_links = scrape_additional_links()
     
-    # Otherwise, read the existing file in the repo
-    if not os.path.exists(OUTPUT_FILE):
-        print(f"Error: {OUTPUT_FILE} not found.")
-        return
+    # 3. Add new links to content if they aren't already there
+    for link in new_links:
+        if link not in content:
+            # We add a generic header for scraped links
+            content += f"\n#EXTINF:0 group-title=\"Scraped\",New Stream\n{link}"
 
-    with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
-        content = f.read()
+    # 4. Clean everything and map EPG
+    final_output = process_and_clean(content)
 
-    processed_content = clean_and_map_m3u(content)
-
+    # 5. Save back to file
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        f.write(processed_content)
-
-    print("Playlist processed: URLs cleaned and EPG tvg-ids injected.")
+        f.write(final_output)
+    print("Update complete.")
 
 if __name__ == "__main__":
     main()
