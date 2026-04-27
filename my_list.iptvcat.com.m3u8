@@ -10427,3 +10427,5 @@ https://ca1.buximedia.com/itv/turkish/tracks-v1a1/mono.m3u8
 https://ca1.buximedia.com/itv/love2/tracks-v1a1/mono.m3u8
 #EXTINF:0 tvg-country="CA" tvg-logo="https://i.imgur.com/aeS4Sjv.png" group-title="Religious",icnet 1
 https://icnet1hls.wns.live/hls/stream.m3u8
+#EXTINF:0 group-title="Scraped",New Stream
+https://list.iptvcat.com/my_list/.m3u8
