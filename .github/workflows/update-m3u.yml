@@ -2,21 +2,24 @@ name: Auto-Update IPTV Playlist
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC
-  workflow_dispatch: # Allows you to manually trigger it
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+# THIS IS THE FIX FOR EXIT CODE 128
+permissions:
+  contents: write
 
 jobs:
   update-playlist:
     runs-on: ubuntu-latest
     env:
-      # Opting into Node 24 early to clear the warnings
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Updated from v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5 # Updated from v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -29,7 +32,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "github-actions[bot]"
           git add my_list.iptvcat.com.m3u8
           git commit -m "Automated playlist update & cleanup" || exit 0
           git push
