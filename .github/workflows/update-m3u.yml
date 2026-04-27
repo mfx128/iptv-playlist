@@ -2,10 +2,9 @@ name: Auto-Update IPTV Playlist
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    - cron: '0 0 * * *' # Runs every night at midnight
+  workflow_dispatch: # Allows manual run for testing
 
-# THIS IS THE FIX FOR EXIT CODE 128
 permissions:
   contents: write
 
@@ -24,7 +23,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests beautifulsoup4
 
       - name: Run update script
         run: python update_playlist.py
@@ -34,5 +33,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
           git add my_list.iptvcat.com.m3u8
-          git commit -m "Automated playlist update & cleanup" || exit 0
+          git commit -m "Automated scraper update, EPG mapping, and cleanup" || exit 0
           git push
